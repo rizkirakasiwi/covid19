@@ -1,18 +1,19 @@
 package com.rizkirakasiwi.covid19.ui.home
 
+import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Color
 import android.net.ConnectivityManager
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.os.Handler
+import android.provider.Settings
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.google.gson.Gson
@@ -50,6 +51,7 @@ class Home : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.home_fragment, container, false)
     }
 
@@ -58,10 +60,15 @@ class Home : Fragment() {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
         adapter = GroupAdapter<GroupieViewHolder>()
+        (activity as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
+        (activity as AppCompatActivity).supportActionBar?.setLogo(R.drawable.logo)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayUseLogoEnabled(true)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(false)
+        (activity as AppCompatActivity).supportActionBar?.elevation = 0f
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loading_home.startAnim()
+        loading_home.startAnim(3000)
         loadDataWhenConnected()
         swipeForLoadData()
     }
@@ -70,7 +77,6 @@ class Home : Fragment() {
         swipe_home.setProgressBackgroundColorSchemeColor(ContextCompat.getColor(context!!, R.color.colorAccent))
         swipe_home.setColorSchemeColors(Color.WHITE)
         swipe_home.setOnRefreshListener {
-            adapter.clear()
             loadDataWhenConnected()
         }
     }
@@ -103,11 +109,13 @@ class Home : Fragment() {
                 recycler_home.visibility = View.VISIBLE
             }
 
+            adapter.clear()
             adapter.add(IndonesiaTodayAdapter(it.dataDetailCovid[0]))
             adapter.add(NewsAdapter(it.dataNews))
             recycler_home.adapter = adapter
         })
     }
+
 
     private fun dataCovid(): DataDetailCovid {
         val json = ApiHelper.getJsonFromUrl(CovidUrl.indoCovidUrl)
@@ -119,11 +127,22 @@ class Home : Fragment() {
         return Gson().fromJson(json, DataNews::class.java)
     }
 
-    private fun showToast(message:String){
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.setting_home, menu)
     }
 
-
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.menu_changeLanguage ->{
+                Intent(Settings.ACTION_LOCALE_SETTINGS).also {
+                    startActivity(it)
+                }
+            }
+            R.id.menu_about->{}
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
 
 }

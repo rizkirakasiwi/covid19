@@ -19,4 +19,8 @@
     <string name="see_more">Lihat lebih banyak</string>
     <string name="indonesia_news_today">Berita indonesia hari ini</string>
     <string name="please_check_your_connection">Tidak bisa memuat data, periksa koneksi internet anda</string>
+    <string name="hours_and_minutes">%s jam yang lalu</string>
+    <string name="minutes">%s menit yang lalu</string>
+    <string name="change_language">Ganti bahasa</string>
+    <string name="about">Tentang</string>
 </resources>
