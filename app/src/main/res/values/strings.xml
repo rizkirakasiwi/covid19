@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Covid19</string>
+    <string name="select_your_country">Select your country</string>
+    <string name="ok">OK</string>
+    <string name="logo">Logo</string>
+    <string name="information_icon">information icon</string>
+    <string name="the_country_you_choose">the country you choose will be the priority of the information we present to you</string>
+    <string name="about_this_page">About this page</string>
+    <string name="country_today">%s today</string>
+    <string name="cases_reported">%s\nCases reported</string>
+    <string name="information">Information</string>
+    <string name="app_need_permissionLocation">The application requires permission to access your location</string>
+    <string name="contentdes_mapview">mapView</string>
+    <string name="active">Active</string>
+    <string name="recovered">Recovered</string>
+    <string name="deaths">Deaths</string>
+    <string name="see_detail">See detail</string>
+    <string name="see_more">See more</string>
+    <string name="indonesia_news_today">Indonesia news today</string>
+</resources>

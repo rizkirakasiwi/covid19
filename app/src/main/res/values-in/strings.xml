@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Covid19</string>
+    <string name="select_your_country">Pilih negara anda</string>
+    <string name="ok">OK</string>
+    <string name="logo">Logo</string>
+    <string name="information_icon">icon informasi</string>
+    <string name="the_country_you_choose">Negara yang anda pilih akan menjadi prioritas informasi yang kami sajikan kepada anda</string>
+    <string name="about_this_page">Tentang halaman ini</string>
+    <string name="country_today">%s hari ini</string>
+    <string name="cases_reported">%s\nKasus dikonfirmasi</string>
+    <string name="information">Informasi</string>
+    <string name="app_need_permissionLocation">Aplikasi memerlukan izin untuk mengakses lokasi</string>
+    <string name="contentdes_mapview">mapView</string>
+    <string name="active">Aktif</string>
+    <string name="recovered">Sembuh</string>
+    <string name="deaths">Meninggal</string>
+    <string name="see_detail">Lihat detail</string>
+    <string name="see_more">Lihat lebih banyak</string>
+    <string name="indonesia_news_today">Berita indonesia hari ini</string>
+</resources>
