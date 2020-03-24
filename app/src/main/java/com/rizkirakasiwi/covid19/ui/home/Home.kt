@@ -1,18 +1,12 @@
 package com.rizkirakasiwi.covid19.ui.home
 
 import android.content.Intent
-import android.content.IntentFilter
 import android.graphics.Color
-import android.net.ConnectivityManager
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.os.Handler
 import android.provider.Settings
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
@@ -25,7 +19,7 @@ import com.rizkirakasiwi.covid19.adapter.newsMainAdapter.NewsAdapter
 import com.rizkirakasiwi.covid19.api.ApiHelper
 import com.rizkirakasiwi.covid19.connection.ConnectionHelper
 import com.rizkirakasiwi.covid19.data.DataForHomeUi
-import com.rizkirakasiwi.covid19.data.covid.DataDetailCovid
+import com.rizkirakasiwi.covid19.data.covid.confirmed.DataConfirmedCovid
 import com.rizkirakasiwi.covid19.data.news.DataNews
 import com.rizkirakasiwi.covid19.url.CovidUrl
 import com.rizkirakasiwi.covid19.url.NewsUrl
@@ -35,7 +29,6 @@ import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlin.system.exitProcess
 
 class Home : Fragment() {
 
@@ -102,7 +95,7 @@ class Home : Fragment() {
     override fun onResume() {
         super.onResume()
         viewModel.dataHome.observe(this, Observer {
-            if (!it.dataDetailCovid.isNullOrEmpty()) {
+            if (!it.dataConfirmedCovid.isNullOrEmpty()) {
                 swipe_home.isRefreshing = false
                 loading_home.stopAnim()
                 loading_home.visibility = View.GONE
@@ -110,16 +103,16 @@ class Home : Fragment() {
             }
 
             adapter.clear()
-            adapter.add(IndonesiaTodayAdapter(it.dataDetailCovid[0]))
+            adapter.add(IndonesiaTodayAdapter(it.dataConfirmedCovid[0]))
             adapter.add(NewsAdapter(it.dataNews))
             recycler_home.adapter = adapter
         })
     }
 
 
-    private fun dataCovid(): DataDetailCovid {
+    private fun dataCovid(): DataConfirmedCovid {
         val json = ApiHelper.getJsonFromUrl(CovidUrl.indoCovidUrl)
-        return Gson().fromJson(json, DataDetailCovid::class.java)
+        return Gson().fromJson(json, DataConfirmedCovid::class.java)
     }
 
     private fun dataNews():DataNews{

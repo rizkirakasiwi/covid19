@@ -1,6 +1,6 @@
-package com.rizkirakasiwi.covid19.data.covid
+package com.rizkirakasiwi.covid19.data.covid.confirmed
 
-data class DataDetailCovidItem(
+data class DataConfirmedCovidItem(
     val active: Int,
     val admin2: Any,
     val combinedKey: String,
