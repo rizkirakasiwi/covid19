@@ -18,4 +18,5 @@
     <string name="see_detail">Lihat detail</string>
     <string name="see_more">Lihat lebih banyak</string>
     <string name="indonesia_news_today">Berita indonesia hari ini</string>
+    <string name="please_check_your_connection">Tidak bisa memuat data, periksa koneksi internet anda</string>
 </resources>

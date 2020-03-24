@@ -7,17 +7,21 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.android.material.snackbar.Snackbar
 import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
 
+
     private val TAG = "MainActivity"
     private val locationRequestCode = 1
+    private var snackbar: Snackbar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         requestForPermission()
+
     }
 
     private fun requestForPermission(){
@@ -49,4 +53,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+
+
 }

@@ -1,4 +1,4 @@
-package com.rizkirakasiwi.covid19.apiHelper
+package com.rizkirakasiwi.covid19.api
 
 import android.content.Context
 import com.google.gson.Gson
